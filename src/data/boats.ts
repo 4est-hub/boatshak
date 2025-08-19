@@ -1,6 +1,6 @@
 import { Boat } from '@/types/boat';
 
-export const boats: Boat[] = Array.from({ length: 20 }, (_, i) => {
+export const boats: Boat[] = Array.from({ length: 300 }, (_, i) => {
   const boatTypes = ['Speedster', 'Sailor', 'Fisher', 'Explorer', 'WaveRider'];
   const sellerTypes: Boat['sellerType'][] = ['OEM', 'Dealer', 'Private'];
   const randomBoat = boatTypes[Math.floor(Math.random() * boatTypes.length)];
