@@ -4,7 +4,7 @@ import styles from './BoatsPage.module.scss';
 import { useState, useEffect, Fragment, useRef, useCallback } from 'react';
 import { getBoats } from '@/services/boats';
 import type { Boat } from '@/types/boat';
-import BoatCard from '@/app/components/BoatCard/BoatCard';
+import BoatCardCompact from '@/app/components/BoatCardCompact/BoatCardCompact';
 
 const BOATS_PER_PAGE = 10;
 
@@ -86,7 +86,7 @@ export default function Boats() {
 
       {filterdBoats.map(boat => (
         <Fragment key={boat.id}>
-          <BoatCard boat={boat} handleLike={handleLike} />
+          <BoatCardCompact boat={boat} handleLike={handleLike} />
         </Fragment>
       ))}
 
