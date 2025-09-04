@@ -79,22 +79,27 @@ export default function Boats() {
 
   return (
     <main className={styles.container}>
-      <section className='filters'>
-        <button onClick={() => setFilter('Show All')}>Show All</button>
-        <button onClick={() => setFilter('Show Liked')}>Show Liked</button>
-      </section>
-
-      {filterdBoats.map(boat => (
-        <Fragment key={boat.id}>
-          <BoatCardCompact boat={boat} handleLike={handleLike} />
-        </Fragment>
-      ))}
-
-      {hasMore.current && (
-        <div ref={bottomRef} style={{ height: '1px' }}>
-          {loadingMore && 'Loading More...'}
+      {/* left column */}
+      <section className={styles.listings}>
+        <div className='filters'>
+          <button onClick={() => setFilter('Show All')}>Show All</button>
+          <button onClick={() => setFilter('Show Liked')}>Show Liked</button>
         </div>
-      )}
+
+        {filterdBoats.map(boat => (
+          <Fragment key={boat.id}>
+            <BoatCardCompact boat={boat} handleLike={handleLike} />
+          </Fragment>
+        ))}
+
+        {hasMore.current && (
+          <div ref={bottomRef} style={{ height: '1px' }}>
+            {loadingMore && 'Loading More...'}
+          </div>
+        )}
+      </section>
+      {/* right column */}
+      <section>Map?</section>
     </main>
   );
 }

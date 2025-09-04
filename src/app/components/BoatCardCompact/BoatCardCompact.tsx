@@ -12,14 +12,14 @@ export default function BoatCardCompact({ boat, handleLike }: Props) {
   return (
     <article className={styles.card}>
       <img className={styles.image} src={img} alt={title} />
-      <section>
+      <div className={styles.content}>
         <h3 className={styles.title}>{title}</h3>
         <div className={styles.seller}>{sellerType}</div>
         <button className={styles.like} onClick={() => handleLike(id, !liked)}>
           {liked ? 'Unlike' : 'Like'}
         </button>
         <div className={styles.price}>${price.toLocaleString()}</div>
-      </section>
+      </div>
     </article>
   );
 }

@@ -4,12 +4,13 @@
   overflow: hidden;
   box-shadow: 0 2px 6px rgba(0,0,0,0.05);
   background-color: #fff;
-  width: 100%;
+  max-width: 800px;
   height: 176px;
   display: flex;
   flex-direction: row;
   transition: transform 0.2s, box-shadow 0.2s;
   color: var(--color-text-primary);
+  margin: 1em 1.5em;
 
   &:hover {
     transform: translateY(-2px);
@@ -17,7 +18,7 @@
   }
 }
 
-.card section {
+.content {
   padding: 1em;
   width: 100%;
   position: relative;
@@ -32,6 +33,10 @@
   font-weight: 600;
   font-size: 1.1rem;
   line-height: 1em;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  width: calc(100% - 44px);
 }
 
 .price {
