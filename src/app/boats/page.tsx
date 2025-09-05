@@ -78,28 +78,29 @@ export default function Boats() {
   if (loading) return 'Loading...';
 
   return (
-    <main className={styles.container}>
+    <main>
       {/* left column */}
-      <section className={styles.listings}>
-        <div className='filters'>
-          <button onClick={() => setFilter('Show All')}>Show All</button>
-          <button onClick={() => setFilter('Show Liked')}>Show Liked</button>
-        </div>
+      <nav className={styles.filters}>
+        <button onClick={() => setFilter('Show All')}>Show All</button>
+        <button onClick={() => setFilter('Show Liked')}>Show Liked</button>
+      </nav>
+      <div className={styles.container}>
+        <section className={styles.listings}>
+          {filterdBoats.map(boat => (
+            <Fragment key={boat.id}>
+              <BoatCardCompact boat={boat} handleLike={handleLike} />
+            </Fragment>
+          ))}
 
-        {filterdBoats.map(boat => (
-          <Fragment key={boat.id}>
-            <BoatCardCompact boat={boat} handleLike={handleLike} />
-          </Fragment>
-        ))}
-
-        {hasMore.current && (
-          <div ref={bottomRef} style={{ height: '1px' }}>
-            {loadingMore && 'Loading More...'}
-          </div>
-        )}
-      </section>
-      {/* right column */}
-      <section>Map?</section>
+          {hasMore.current && (
+            <div ref={bottomRef} style={{ height: '1px' }}>
+              {loadingMore && 'Loading More...'}
+            </div>
+          )}
+        </section>
+        {/* right column */}
+        <section>Map?</section>
+      </div>
     </main>
   );
 }

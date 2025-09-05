@@ -1,0 +1,27 @@
+.container {
+  height: 80px;
+  background-color: var(--color-white);
+  // for theme (darkmode, etc)
+  // background-color: var(--background);
+  display: flex;
+  padding: 0 1.5em;
+  align-items: center;
+}
+
+.logo {
+  font-size: 3.5em;
+  word-spacing: 0;
+}
+
+.boat {
+  font-family: 'Arial', sans-serif;  /* simple blocky font */
+  font-weight: bold;
+  color: var(--color-dolphin-blue);
+}
+
+.shak {
+  font-family: 'SharkFont'; /* your cool sharky font */
+  font-weight: bolder;
+  color: var(--color-dolphin-orange); /* optional accent color */
+  letter-spacing: -2px;
+}

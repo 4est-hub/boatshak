@@ -1,3 +1,12 @@
+.filters {
+  height: 50px;
+  padding: 0 2em;
+  display: flex;
+  align-items: center;
+  gap: 1em;
+  background-color: lightgreen;
+}
+
 .container {
   background-color: lightblue;
   display: grid;
