@@ -1,11 +1,12 @@
+import Link from 'next/link';
 import styles from './Header.module.scss';
 
 const LogoDesign = () => (
   <h1 className={styles.logo}>
-    <a href="/" aria-label="BoatShak logo">
+    <Link href="/" aria-label="BoatShak logo">
       <span className={styles.boat}>Boat</span>
       <span className={styles.shak}>Shak</span>
-    </a>
+    </Link>
   </h1>
 );
 
@@ -14,5 +15,5 @@ export default function Header() {
     <header className={styles.container}>
       <LogoDesign />
     </header>
-  )
+  );
 }
