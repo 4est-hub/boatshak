@@ -1,6 +1,6 @@
 'use client'
 
-import PostForm from '@/app/components/Forms/PostForm';
+import PostForm from '@/app/components/PostForm/PostForm';
 import PostCard from '@/app/components/PostCard/PostCard';
 import type { Post } from '@/types/form';
 import styles from './Page.module.scss';

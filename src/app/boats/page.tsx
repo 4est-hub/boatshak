@@ -5,6 +5,7 @@ import { useState, useEffect, Fragment, useRef, useCallback } from 'react';
 import { getBoats } from '@/services/boats';
 import type { Boat } from '@/types/boat';
 import BoatCardCompact from '@/app/components/BoatCardCompact/BoatCardCompact';
+import Button from '@/app/components/ui/Button/Button';
 
 const BOATS_PER_PAGE = 10;
 
@@ -24,7 +25,7 @@ export default function Boats() {
     setBoats(updatedBoats);
   };
 
-  const fetchBoats = async () => {
+  const fetchBoats = useCallback(async () => {
     if (!hasMore.current) return;
 
     try {
@@ -45,22 +46,21 @@ export default function Boats() {
       setLoading(false);
       setLoadingMore(false);
     }
-  };
+  }, []);
 
-  const fetchMoreBoats = () => {
+  const fetchMoreBoats = useCallback(() => {
     if (loadingMore || !hasMore.current) return;
     setLoadingMore(true);
     page.current += 1;
     fetchBoats();
-  };
+  }, []);
 
   useEffect(() => {
     setLoading(true);
     fetchBoats();
   }, []);
 
-  // IntersectionObserver setup
-  const bottomRef = useCallback((node: HTMLDivElement | null) => {
+  const bottomRef = useCallback((node: HTMLLIElement | null) => {
     if (loadingMore) return;
     if (observer.current) observer.current.disconnect();
 
@@ -71,35 +71,43 @@ export default function Boats() {
     });
 
     if (node) observer.current.observe(node);
-  }, [loadingMore]);
+  }, [loadingMore, fetchMoreBoats]);
 
   const filterdBoats = boats.filter(boat => (filter === 'Show Liked' ? boat.liked : true));
 
-  if (loading) return 'Loading...';
+  const filterElements: ('Show All' | 'Show Liked')[] = ['Show All', 'Show Liked'];
 
   return (
     <main>
-      {/* left column */}
-      <nav className={styles.filters}>
-        <button onClick={() => setFilter('Show All')}>Show All</button>
-        <button onClick={() => setFilter('Show Liked')}>Show Liked</button>
-      </nav>
+      <section className={styles.filters} aria-label="Filters">
+        {filterElements.map(fEl => (
+          <Button
+            key={fEl}
+            isSelected={filter === fEl}
+            isDisabled={fEl === 'Show Liked' && !boats.some((boat) => boat.liked)}
+            onClick={() => setFilter(fEl)}
+          >
+            {fEl}
+          </Button>
+        ))}
+      </section>
+
       <div className={styles.container}>
-        <section className={styles.listings}>
+        <ul className={styles.listings}>
           {filterdBoats.map(boat => (
-            <Fragment key={boat.id}>
+            <li key={boat.id}>
               <BoatCardCompact boat={boat} handleLike={handleLike} />
-            </Fragment>
+            </li>
           ))}
 
           {hasMore.current && (
-            <div ref={bottomRef} style={{ height: '1px' }}>
+            <li ref={bottomRef} style={{ height: '1px' }}>
               {loadingMore && 'Loading More...'}
-            </div>
+            </li>
           )}
-        </section>
-        {/* right column */}
-        <section>Map?</section>
+        </ul>
+
+        <aside aria-label="Map view">Map?</aside>
       </div>
     </main>
   );

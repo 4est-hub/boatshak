@@ -2,7 +2,7 @@
 
 import { FormEvent, useRef, useState } from 'react';
 import type { Post } from '@/types/form';
-import styles from './Forms.module.scss';
+import styles from './PostForm.module.scss';
 
 interface Props {
   handleCreate: (post: Post) => void;

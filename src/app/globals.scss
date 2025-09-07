@@ -2,19 +2,26 @@
   --background: #ffffff;
   --foreground: #171717;
 
+  --color-text: #414143;
+
   --color-white: #ffffff;
+
+  --color-grey-0: #f4f4f4;
+  --color-grey-1: #d0d0d0;
+  
+
   --color-dolphin-aqua: #008E97;
   --color-dolphin-blue: #005778;
   --color-dolphin-orange: #FC4C02;
   --color-text-primary: #121214;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+// @media (prefers-color-scheme: dark) {
+//   :root {
+//     --background: #0a0a0a;
+//     --foreground: #ededed;
+//   }
+// }
 
 html,
 body {
@@ -41,11 +48,11 @@ a {
   text-decoration: none;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-}
+// @media (prefers-color-scheme: dark) {
+//   html {
+//     color-scheme: dark;
+//   }
+// }
 
 .app-container {
   margin: 0 auto;
